@@ -8,7 +8,7 @@
   "scripts": {
     "start": "node_modules/.bin/ts-node src/main",
     "build": "node_modules/.bin/tsc",
-    "dist": "yarn build && node_modules/.bin/ncc build build/main --license licenses.txt"
+    "dist": "node_modules/.bin/ncc build src/main.ts --license licenses.txt"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.7.0",

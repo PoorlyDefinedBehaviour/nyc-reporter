@@ -2,36 +2,6 @@ module.exports =
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 538:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-var core_1 = __importDefault(__webpack_require__(186));
-var github_1 = __importDefault(__webpack_require__(438));
-try {
-    console.log("hello world");
-    // `who-to-greet` input defined in action metadata file
-    var nameToGreet = core_1.default.getInput("who-to-greet");
-    console.log("Hello " + nameToGreet + "!");
-    var time = new Date().toTimeString();
-    core_1.default.setOutput("time", time);
-    // Get the JSON webhook payload for the event that triggered the workflow
-    var payload = JSON.stringify(github_1.default.context.payload, undefined, 2);
-    console.log("The event payload: " + payload);
-}
-catch (error) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    core_1.default.setFailed(error.message);
-}
-
-
-/***/ }),
-
 /***/ 351:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -5820,6 +5790,51 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
+/***/ 399:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+var core = __importStar(__webpack_require__(186));
+var github = __importStar(__webpack_require__(438));
+try {
+    // `who-to-greet` input defined in action metadata file s
+    var nameToGreet = core.getInput("who-to-greet");
+    console.log("Hello " + nameToGreet + "!");
+    var time = new Date().toTimeString();
+    core.setOutput("time", time);
+    // Get the JSON webhook payload for the event that triggered the workflow
+    var payload = JSON.stringify(github.context.payload, undefined, 2);
+    console.log("The event payload: " + payload);
+}
+catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    core.setFailed(error.message);
+}
+
+
+/***/ }),
+
 /***/ 877:
 /***/ ((module) => {
 
@@ -5970,6 +5985,6 @@ module.exports = require("zlib");;
 /******/ 	// module exports must be returned from runtime so entry inlining is disabled
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(538);
+/******/ 	return __webpack_require__(399);
 /******/ })()
 ;
