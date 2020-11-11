@@ -14,6 +14,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var core_1 = __importDefault(__webpack_require__(186));
 var github_1 = __importDefault(__webpack_require__(438));
 try {
+    console.log("hello world");
     // `who-to-greet` input defined in action metadata file
     var nameToGreet = core_1.default.getInput("who-to-greet");
     console.log("Hello " + nameToGreet + "!");
