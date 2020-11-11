@@ -1,0 +1,32 @@
+{
+  "name": "nyc-reporter",
+  "version": "1.0.0",
+  "main": "src/main",
+  "repository": "https://github.com/PoorlyDefinedBehaviour/nyc-reporter.git",
+  "author": "PoorlyDefinedBehaviour <brunotj2015@hotmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node_modules/.bin/ts-node src/main",
+    "build": "node_modules/.bin/tsc",
+    "dist": "yarn build && node_modules/.bin/ncc build build/main --license licenses.txt"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.7.0",
+    "@typescript-eslint/parser": "^4.7.0",
+    "@vercel/ncc": "^0.25.1",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.1.2",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  }
+}
