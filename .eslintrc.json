@@ -6,6 +6,9 @@
     "browser": true,
     "es2021": true
   },
+  "globals": {
+    "jest": true
+  },
   "extends": [
     "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
@@ -16,7 +19,9 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "rules": {
-    "no-unused-vars": [2, { "args": "all", "argsIgnorePattern": "^_+" }]
+    "no-unused-vars": [2, { "args": "all", "argsIgnorePattern": "^_+" }],
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off"
   },
   "settings": {
     "import/parsers": {

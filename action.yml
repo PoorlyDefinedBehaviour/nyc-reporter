@@ -1,16 +1,12 @@
 name: "Report"
-description: "Greet someone and record the time"
+description: "Run tests & comment coverage on pull request"
 inputs:
   GITHUB_TOKEN:
     description: "The GITHUB_TOKEN secret"
     required: true
-  who-to-greet: # id of input
-    description: "Who to greet"
+  command:
+    description: "Command to run the tests"
     required: true
-    default: "World"
-outputs:
-  time: # id of output
-    description: "The time we greeted you"
 runs:
   using: "node12"
   main: "dist/index.js"

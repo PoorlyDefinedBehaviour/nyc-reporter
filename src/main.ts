@@ -1,33 +1,43 @@
 import * as core from "@actions/core"
 import * as github from "@actions/github"
+import * as exec from "@actions/exec"
+
+const getCoverageOutputTextForCommand = async (command: string) => {
+  let outputText = ""
+
+  await exec.exec(
+    `node_modules/.bin/nyc --reporter=lcov --reporter=text-summary ${command}`,
+    undefined,
+    {
+      listeners: {
+        stdout: (data: Buffer) => {
+          outputText += data.toString()
+        },
+      },
+    }
+  )
+
+  return outputText
+}
 
 const main = async () => {
-  try {
-    if (!github.context.payload.pull_request) {
-      return
-    }
-
-    // `who-to-greet` input defined in action metadata file s
-    const nameToGreet = core.getInput("who-to-greet")
-    const githubToken = core.getInput("GITHUB_TOKEN")
-    if (!githubToken) {
-      core.setFailed("GITHUB_TOKEN not found")
-    }
-
-    console.log(`Hello ${nameToGreet}!`)
-    const time = new Date().toTimeString()
-    core.setOutput("time", time)
-
-    const octokit = github.getOctokit(githubToken)
-
-    await octokit.issues.createComment({
-      ...github.context.repo,
-      issue_number: github.context.payload.pull_request.number,
-      body: "hello world",
-    })
-  } catch (error) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    core.setFailed(error.message)
+  if (!github.context.payload.pull_request) {
+    return
   }
+
+  const command = core.getInput("command")
+
+  const coverageOutputText = await getCoverageOutputTextForCommand(command)
+
+  const githubToken = core.getInput("GITHUB_TOKEN")
+
+  const octokit = github.getOctokit(githubToken)
+
+  await octokit.issues.createComment({
+    ...github.context.repo,
+    issue_number: github.context.payload.pull_request.number,
+    body: coverageOutputText,
+  })
 }
+
 main().catch((error: Error) => core.setFailed(error.message))
