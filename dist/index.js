@@ -7074,7 +7074,7 @@ var getCoverageOutputTextForCommand = function (command) { return __awaiter(void
         switch (_a.label) {
             case 0:
                 outputText = "";
-                return [4 /*yield*/, exec.exec("nyc --reporter=lcov --reporter=text-summary " + command, undefined, {
+                return [4 /*yield*/, exec.exec("yarn nyc " + command, undefined, {
                         listeners: {
                             stdout: function (data) {
                                 outputText += data.toString();
