@@ -9,6 +9,8 @@ const getCoverageOutputTextForCommand = async (command: string) => {
 
   await exec.exec("ls node_modules")
 
+  await exec.exec("ls node_modules/.bin/")
+
   await exec.exec(
     `nyc --reporter=lcov --reporter=text-summary ${command}`,
     undefined,
