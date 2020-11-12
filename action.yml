@@ -4,7 +4,6 @@ inputs:
   GITHUB_TOKEN:
     description: "The GITHUB_TOKEN secret"
     required: true
-    default: ${{ secrets.GITHUB_TOKEN }}
   who-to-greet: # id of input
     description: "Who to greet"
     required: true
