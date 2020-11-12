@@ -1,6 +1,10 @@
 name: "Report"
 description: "Greet someone and record the time"
 inputs:
+  GITHUB_TOKEN:
+    description: "The GITHUB_TOKEN secret"
+    required: true
+    defalt: ${{ secrets.GITHUB_TOKEN }}
   who-to-greet: # id of input
     description: "Who to greet"
     required: true

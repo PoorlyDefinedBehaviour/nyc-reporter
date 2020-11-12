@@ -6,6 +6,7 @@ const main = async () => {
     if (!github.context.payload.pull_request) {
       return
     }
+
     // `who-to-greet` input defined in action metadata file s
     const nameToGreet = core.getInput("who-to-greet")
     const githubToken = core.getInput("GITHUB_TOKEN")
@@ -16,9 +17,6 @@ const main = async () => {
     console.log(`Hello ${nameToGreet}!`)
     const time = new Date().toTimeString()
     core.setOutput("time", time)
-    // Get the JSON webhook payload for the event that triggered the workflow
-    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    console.log(`The event payload: ${payload}`)
 
     const octokit = github.getOctokit(githubToken)
 
