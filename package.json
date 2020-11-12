@@ -9,7 +9,8 @@
     "start": "node_modules/.bin/ts-node src/main",
     "build": "node_modules/.bin/tsc",
     "dist": "node_modules/.bin/ncc build src/main.ts --license licenses.txt",
-    "test": "NODE_ENV=test node_modules/.bin/jest --bail --runInBand --setupFiles --forceExit --detectOpenHandles --testTimeout=10000"
+    "test": "NODE_ENV=test node_modules/.bin/jest --bail --runInBand --setupFiles --forceExit --detectOpenHandles --testTimeout=10000",
+    "nyc": "node_modules/.bin/nyc --reporter=lcov --reporter=text-summary"
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",

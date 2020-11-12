@@ -5,17 +5,13 @@ import * as exec from "@actions/exec"
 const getCoverageOutputTextForCommand = async (command: string) => {
   let outputText = ""
 
-  await exec.exec(
-    `nyc --reporter=lcov --reporter=text-summary ${command}`,
-    undefined,
-    {
-      listeners: {
-        stdout: (data: Buffer) => {
-          outputText += data.toString()
-        },
+  await exec.exec(`yarn nyc ${command}`, undefined, {
+    listeners: {
+      stdout: (data: Buffer) => {
+        outputText += data.toString()
       },
-    }
-  )
+    },
+  })
 
   return outputText
 }
