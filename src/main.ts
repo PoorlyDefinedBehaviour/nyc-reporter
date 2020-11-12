@@ -9,6 +9,10 @@ const main = async () => {
     // `who-to-greet` input defined in action metadata file s
     const nameToGreet = core.getInput("who-to-greet")
     const githubToken = core.getInput("GITHUB_TOKEN")
+    if (!githubToken) {
+      core.setFailed("GITHUB_TOKEN not found")
+    }
+
     console.log(`Hello ${nameToGreet}!`)
     const time = new Date().toTimeString()
     core.setOutput("time", time)
