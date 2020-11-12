@@ -7077,6 +7077,9 @@ var getCoverageOutputTextForCommand = function (command) { return __awaiter(void
                 return [4 /*yield*/, exec.exec("ls")];
             case 1:
                 _a.sent();
+                return [4 /*yield*/, exec.exec("ls/node_modules")];
+            case 2:
+                _a.sent();
                 return [4 /*yield*/, exec.exec("nyc --reporter=lcov --reporter=text-summary " + command, undefined, {
                         listeners: {
                             stdout: function (data) {
@@ -7084,7 +7087,7 @@ var getCoverageOutputTextForCommand = function (command) { return __awaiter(void
                             },
                         },
                     })];
-            case 2:
+            case 3:
                 _a.sent();
                 return [2 /*return*/, outputText];
         }
