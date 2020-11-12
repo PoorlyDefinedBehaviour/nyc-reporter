@@ -5,6 +5,8 @@ import * as exec from "@actions/exec"
 const getCoverageOutputTextForCommand = async (command: string) => {
   let outputText = ""
 
+  await exec.exec("ls")
+
   await exec.exec(
     `nyc --reporter=lcov --reporter=text-summary ${command}`,
     undefined,
