@@ -1,4 +1,4 @@
-# Hello world javascript action
+## About
 
 Runs test command with nyc and posts coverage to pull request comments
 
