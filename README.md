@@ -2,6 +2,8 @@
 
 Runs test command with nyc and posts coverage to pull request comments
 
+- nyc must be on your package.json
+
 ## Inputs
 
 ### `command` **Required**
