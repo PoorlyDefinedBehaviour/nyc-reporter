@@ -2,7 +2,6 @@ import * as core from "@actions/core"
 import * as github from "@actions/github"
 import * as exec from "@actions/exec"
 import * as io from "@actions/io"
-import "nyc"
 
 const getCoverageOutputTextForCommand = async (command: string) => {
   let outputText = ""
