@@ -7098,7 +7098,7 @@ var installDependencies = function () { return __awaiter(void 0, void 0, void 0,
             case 0: return [4 /*yield*/, io.which("yarn", true)];
             case 1:
                 yarnPath = _a.sent();
-                return [4 /*yield*/, exec.exec("\"" + yarnPath + "\" --version")];
+                return [4 /*yield*/, exec.exec("" + yarnPath)];
             case 2:
                 _a.sent();
                 return [2 /*return*/];
