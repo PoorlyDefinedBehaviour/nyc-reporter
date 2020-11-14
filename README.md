@@ -1,23 +1,46 @@
 # Hello world javascript action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+Runs test command with nyc and posts coverage to pull request comments
 
 ## Inputs
 
-### `who-to-greet`
+### `command` **Required**
 
-**Required** The name of the person to greet. Default `"World"`.
+Command to run the tests </br>
+Example: `"yarn test"`.
 
-## Outputs
+### `GITHUB_TOKEN`
 
-### `time`
-
-The time we greeted you.
+The GITHUB_TOKEN secret </br>
+Default: `"${{ github.token }}"`
 
 ## Example usage
 
 ```yaml
-uses: actions/hello-world-javascript-action@v1.1
-with:
-  who-to-greet: "Mona the Octocat"
+name: "Code quality"
+on: [pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: bahmutov/npm-install@v1
+
+      - name: Report test coverage
+        uses: PoorlyDefinedBehaviour/nyc-reporter@v1
+        with:
+          command: "yarn test"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
