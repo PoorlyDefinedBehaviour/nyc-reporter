@@ -4,9 +4,11 @@ inputs:
   GITHUB_TOKEN:
     description: "The GITHUB_TOKEN secret"
     required: true
+    default: ${{ github.token }}
   command:
     description: "Command to run the tests"
     required: true
+
 runs:
   using: "node12"
   main: "dist/index.js"

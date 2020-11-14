@@ -7068,6 +7068,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 var core = __importStar(__webpack_require__(2186));
 var github = __importStar(__webpack_require__(5438));
 var exec = __importStar(__webpack_require__(1514));
+var io = __importStar(__webpack_require__(7436));
 var getCoverageOutputTextForCommand = function (command) { return __awaiter(void 0, void 0, void 0, function () {
     var outputText;
     return __generator(this, function (_a) {
@@ -7096,6 +7097,20 @@ var getCoverageOutputTextForCommand = function (command) { return __awaiter(void
         }
     });
 }); };
+var installDependencies = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var yarnPath;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, io.which("yarn", true)];
+            case 1:
+                yarnPath = _a.sent();
+                return [4 /*yield*/, exec.exec("\"" + yarnPath + "\" --version")];
+            case 2:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); };
 var main = function () { return __awaiter(void 0, void 0, void 0, function () {
     var command, coverageOutputText, githubToken, octokit;
     return __generator(this, function (_a) {
@@ -7104,14 +7119,20 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 if (!github.context.payload.pull_request) {
                     return [2 /*return*/];
                 }
+                return [4 /*yield*/, installDependencies()];
+            case 1:
+                _a.sent();
+                return [4 /*yield*/, exec.exec("ls node_modules/.bin/")];
+            case 2:
+                _a.sent();
                 command = core.getInput("command");
                 return [4 /*yield*/, getCoverageOutputTextForCommand(command)];
-            case 1:
+            case 3:
                 coverageOutputText = _a.sent();
                 githubToken = core.getInput("GITHUB_TOKEN");
                 octokit = github.getOctokit(githubToken);
                 return [4 /*yield*/, octokit.issues.createComment(__assign(__assign({}, github.context.repo), { issue_number: github.context.payload.pull_request.number, body: coverageOutputText }))];
-            case 2:
+            case 4:
                 _a.sent();
                 return [2 /*return*/];
         }
