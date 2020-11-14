@@ -7070,28 +7070,22 @@ var github = __importStar(__webpack_require__(5438));
 var exec = __importStar(__webpack_require__(1514));
 var io = __importStar(__webpack_require__(7436));
 var getCoverageOutputTextForCommand = function (command) { return __awaiter(void 0, void 0, void 0, function () {
-    var outputText;
+    var outputText, nycPath;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 outputText = "";
-                return [4 /*yield*/, exec.exec("ls")];
+                return [4 /*yield*/, io.which("nyc", true)];
             case 1:
-                _a.sent();
-                return [4 /*yield*/, exec.exec("ls node_modules")];
-            case 2:
-                _a.sent();
-                return [4 /*yield*/, exec.exec("ls node_modules/.bin/")];
-            case 3:
-                _a.sent();
-                return [4 /*yield*/, exec.exec("nyc --reporter=lcov --reporter=text-summary " + command, undefined, {
+                nycPath = _a.sent();
+                return [4 /*yield*/, exec.exec(nycPath + " --reporter=lcov --reporter=text-summary " + command, undefined, {
                         listeners: {
                             stdout: function (data) {
                                 outputText += data.toString();
                             },
                         },
                     })];
-            case 4:
+            case 2:
                 _a.sent();
                 return [2 /*return*/, outputText];
         }

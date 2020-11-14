@@ -6,14 +6,10 @@ import * as io from "@actions/io"
 const getCoverageOutputTextForCommand = async (command: string) => {
   let outputText = ""
 
-  await exec.exec("ls")
-
-  await exec.exec("ls node_modules")
-
-  await exec.exec("ls node_modules/.bin/")
+  const nycPath = await io.which("nyc", true)
 
   await exec.exec(
-    `nyc --reporter=lcov --reporter=text-summary ${command}`,
+    `${nycPath} --reporter=lcov --reporter=text-summary ${command}`,
     undefined,
     {
       listeners: {
