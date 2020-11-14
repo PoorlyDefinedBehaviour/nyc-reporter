@@ -1,4 +1,4 @@
-yarn build
+yarn dist
 git add *
 git commit -m "v1"
 git tag -d v1
