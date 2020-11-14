@@ -7,7 +7,7 @@ Runs test command with nyc and posts coverage to pull request comments
 ### `command` **Required**
 
 Command to run the tests </br>
-Example: `"yarn test"`.
+Example: `"yarn test"`
 
 ### `GITHUB_TOKEN`
 
