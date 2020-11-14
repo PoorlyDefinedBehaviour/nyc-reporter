@@ -25,7 +25,7 @@ const getCoverageOutputTextForCommand = async (command: string) => {
 
 const installDependencies = async () => {
   const yarnPath = await io.which("yarn", true)
-  await exec.exec(`"${yarnPath}" --version`)
+  await exec.exec(`${yarnPath}`)
 }
 
 const main = async () => {
