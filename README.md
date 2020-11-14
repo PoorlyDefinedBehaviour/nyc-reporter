@@ -2,7 +2,7 @@
 
 Runs test command with nyc and posts coverage to pull request comments
 
-- nyc must be on your package.json
+- nyc must be listed as a dependencie on your package.json
 
 ## Inputs
 
@@ -14,7 +14,7 @@ Example: `"yarn test"`
 ### `GITHUB_TOKEN`
 
 The GITHUB_TOKEN secret </br>
-Default: `"${{ github.token }}"`
+Default: `${{ github.token }}`
 
 ## Example usage
 
