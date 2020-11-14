@@ -2,7 +2,7 @@ import * as core from "@actions/core"
 import * as github from "@actions/github"
 import * as exec from "@actions/exec"
 
-const getCoverageOutputTextForCommand = async (command: string) => {
+const getCommandStdoutText = async (command: string) => {
   let outputText = ""
 
   await exec.exec(
@@ -20,12 +20,20 @@ const getCoverageOutputTextForCommand = async (command: string) => {
   return outputText
 }
 
+const getCoverageOutputTextForCommand = async (command: string) => {
+  const text = await getCommandStdoutText(command)
+
+  const reportStartsAt = text.indexOf(
+    "File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s"
+  )
+
+  return text.slice(reportStartsAt)
+}
+
 const main = async () => {
   if (!github.context.payload.pull_request) {
     return
   }
-
-  await exec.exec("ls node_modules/.bin/")
 
   const command = core.getInput("command")
 
