@@ -24,7 +24,7 @@ const getCoverageOutputTextForCommand = async (command: string) => {
   const text = await getCommandStdoutText(command)
 
   const reportStartsAt = text.indexOf(
-    "File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s"
+    "File      | % Stmts | % Branch | % Funcs | % Lines"
   )
 
   return text.slice(reportStartsAt)

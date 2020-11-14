@@ -7094,7 +7094,7 @@ var getCoverageOutputTextForCommand = function (command) { return __awaiter(void
             case 0: return [4 /*yield*/, getCommandStdoutText(command)];
             case 1:
                 text = _a.sent();
-                reportStartsAt = text.indexOf("File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s");
+                reportStartsAt = text.indexOf("File      | % Stmts | % Branch | % Funcs | % Lines");
                 return [2 /*return*/, text.slice(reportStartsAt)];
         }
     });
