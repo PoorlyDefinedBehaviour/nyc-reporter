@@ -1,4 +1,4 @@
-name: "Report"
+name: "PoorlyDefinedBehavioyr/nyc-reporter"
 description: "Run tests & comment coverage on pull request"
 inputs:
   GITHUB_TOKEN:
