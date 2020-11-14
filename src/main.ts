@@ -1,15 +1,12 @@
 import * as core from "@actions/core"
 import * as github from "@actions/github"
 import * as exec from "@actions/exec"
-import * as io from "@actions/io"
 
 const getCoverageOutputTextForCommand = async (command: string) => {
   let outputText = ""
 
-  const nycPath = await io.which("nyc", true)
-
   await exec.exec(
-    `${nycPath} --reporter=lcov --reporter=text-summary ${command}`,
+    `./node_modules/.bin/nyc --reporter=lcov --reporter=text-summary ${command}`,
     undefined,
     {
       listeners: {
@@ -23,17 +20,10 @@ const getCoverageOutputTextForCommand = async (command: string) => {
   return outputText
 }
 
-const installDependencies = async () => {
-  const yarnPath = await io.which("yarn", true)
-  await exec.exec(`${yarnPath}`)
-}
-
 const main = async () => {
   if (!github.context.payload.pull_request) {
     return
   }
-
-  await installDependencies()
 
   await exec.exec("ls node_modules/.bin/")
 

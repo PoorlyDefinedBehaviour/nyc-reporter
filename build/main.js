@@ -69,40 +69,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core = __importStar(require("@actions/core"));
 var github = __importStar(require("@actions/github"));
 var exec = __importStar(require("@actions/exec"));
-var io = __importStar(require("@actions/io"));
 var getCoverageOutputTextForCommand = function (command) { return __awaiter(void 0, void 0, void 0, function () {
-    var outputText, nycPath;
+    var outputText;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 outputText = "";
-                return [4 /*yield*/, io.which("nyc", true)];
-            case 1:
-                nycPath = _a.sent();
-                return [4 /*yield*/, exec.exec(nycPath + " --reporter=lcov --reporter=text-summary " + command, undefined, {
+                return [4 /*yield*/, exec.exec("./node_modules/.bin/nyc --reporter=lcov --reporter=text-summary " + command, undefined, {
                         listeners: {
                             stdout: function (data) {
                                 outputText += data.toString();
                             },
                         },
                     })];
-            case 2:
+            case 1:
                 _a.sent();
                 return [2 /*return*/, outputText];
-        }
-    });
-}); };
-var installDependencies = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var yarnPath;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, io.which("yarn", true)];
-            case 1:
-                yarnPath = _a.sent();
-                return [4 /*yield*/, exec.exec("" + yarnPath)];
-            case 2:
-                _a.sent();
-                return [2 /*return*/];
         }
     });
 }); };
@@ -114,20 +96,17 @@ var main = function () { return __awaiter(void 0, void 0, void 0, function () {
                 if (!github.context.payload.pull_request) {
                     return [2 /*return*/];
                 }
-                return [4 /*yield*/, installDependencies()];
-            case 1:
-                _a.sent();
                 return [4 /*yield*/, exec.exec("ls node_modules/.bin/")];
-            case 2:
+            case 1:
                 _a.sent();
                 command = core.getInput("command");
                 return [4 /*yield*/, getCoverageOutputTextForCommand(command)];
-            case 3:
+            case 2:
                 coverageOutputText = _a.sent();
                 githubToken = core.getInput("GITHUB_TOKEN");
                 octokit = github.getOctokit(githubToken);
                 return [4 /*yield*/, octokit.issues.createComment(__assign(__assign({}, github.context.repo), { issue_number: github.context.payload.pull_request.number, body: coverageOutputText }))];
-            case 4:
+            case 3:
                 _a.sent();
                 return [2 /*return*/];
         }
