@@ -44,3 +44,7 @@ jobs:
           command: "yarn test"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## Preview
+
+![Preview](./assets/nyc_reporter_preview.png)
