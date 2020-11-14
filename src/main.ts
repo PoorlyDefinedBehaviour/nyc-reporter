@@ -6,7 +6,7 @@ const getCoverageOutputTextForCommand = async (command: string) => {
   let outputText = ""
 
   await exec.exec(
-    `./node_modules/.bin/nyc --reporter=lcov --reporter=text-summary ${command}`,
+    `./node_modules/.bin/nyc --reporter=lcov --reporter=text ${command}`,
     undefined,
     {
       listeners: {
