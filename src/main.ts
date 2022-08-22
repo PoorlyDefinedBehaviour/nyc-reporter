@@ -21,11 +21,11 @@ const getCommandStdoutText = async (command: string) => {
 }
 
 const getCoverageOutputTextForCommand = async (command: string) => {
+  const regex = / *File *| *% Stmts *| *% Branch *| % Funcs | *Lines */
+
   const text = await getCommandStdoutText(command)
 
-  const reportStartsAt = text.indexOf(
-    "File      | % Stmts | % Branch | % Funcs | % Lines"
-  )
+  const reportStartsAt = text.search(regex)
 
   return text.slice(reportStartsAt)
 }
